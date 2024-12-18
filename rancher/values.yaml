@@ -1,0 +1,31 @@
+# values.yaml
+
+hostname: <rancher.domain>
+bootstrapPassword: admin
+ingress:
+  enabled: false
+  servicePort: 30003
+  ingressClassName: nginx
+  tls:
+    source: secret
+    secretName: tls-ca
+rancherImage: <your-domain>/hub/rancher
+rancherImageTag: latest
+imagePullSecrets:
+  - name: harbor-k8s-secret
+service:
+  type: NodePort
+  http:
+    port: 30003
+  https:
+    port: 30004
+privateCA: true
+replicas: 1
+systemDefaultRegistry: <your-domain>/hub
+
+# 移除健康检查
+startupProbe: {}
+livenessProbe: {}
+readinessProbe: {}
+
+fleet: ""
